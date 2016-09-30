@@ -1,13 +1,13 @@
 " premapuje esc na CAPS LOCK
 "!setxkbmap -option caps:swapescape
 
-" Automatic reloading of .vimrc
+" automatic reloading of .vimrc
 autocmd! bufwritepost .vimrc source %
 
 
-"" Better copy & paste
-"" When you want to paste large blocks of code into vim, press F2 before you
-"" paste. At the bottom you should see ``-- INSERT (paste) --``.
+"" better copy & paste
+"" when you want to paste large blocks of code into vim, press f2 before you
+"" paste. at the bottom you should see ``-- insert (paste) --``.
 
 set pastetoggle=<F2>
 set clipboard=unnamed
@@ -73,8 +73,7 @@ vnoremap > >gv  " better indentation
 
 
 " Color scheme
-"!mkdir -p ~/.vim/colors && cd ~/.vim/colors
-"!wget -O wombat256mod.vim http://www.vim.org/scripts/download_script.php?src_id=13400
+"!mkdir -p ~/.vim/colors && cd ~/.vim/colors && wget -O wombat256mod.vim http://www.vim.org/scripts/download_script.php?src_id=13400
 set t_Co=256
 color wombat256mod
 
@@ -118,9 +117,6 @@ set incsearch
 set ignorecase
 set smartcase
 
-"folding dalsi verze
-""!mkdir ~/.vim/syntax && wget -O ~/.vim/syntax/python.vim http://www.vim.org/scripts/download_script.php?src_id=9584
-
 
 "" Disable stupid backup and swap files - they trigger too many events
 "" for file system watchers
@@ -134,6 +130,7 @@ set smartcase
 "!curl -so ~/.vim/autoload/pathogen.vim https://raw.githubusercontent.com/tpope/vim-pathogen/master/autoload/pathogen.vim
 " Now you can install any plugin into a .vim/bundle/plugin-name/ folder
 call pathogen#infect()
+Helptags
 
 
 "" ============================================================================
@@ -143,46 +140,68 @@ call pathogen#infect()
 "
 "" Settings for vim-powerline
 "!cd ~/.vim/bundle && git clone git://github.com/Lokaltog/vim-powerline.git
-"
-"set laststatus=2
-"
-"
+
+set laststatus=2
+
+
 "" Settings for ctrlp
 "!cd ~/.vim/bundle && git clone https://github.com/kien/ctrlp.vim.git
-""" let g:ctrlp_max_height = 30
-""" set wildignore+=*.pyc
-""" set wildignore+=*_build/*
-""" set wildignore+=*/coverage/*
-"
+"let g:ctrlp_max_height = 30
+"set wildignore+=*.pyc
+"set wildignore+=*_build/*
+"set wildignore+=*/coverage/*
+
 "" Settings for jedi-vim
-"!cd ~/.vim/bundle && git clone git://github.com/davidhalter/jedi-vim.git
-""" let g:jedi#usages_command = "<leader>z"
-""" let g:jedi#popup_on_dot = 0
-""" let g:jedi#popup_select_first = 0
-""" map <Leader>b Oimport ipdb; ipdb.set_trace() # BREAKPOINT<C-c>
-"
+"!cd ~/.vim/bundle/ && git clone --recursive https://github.com/davidhalter/jedi-vim.git
+"let g:jedi#auto_initialization = 0
+"let g:jedi#usages_command = "<leader>z"
+"let g:jedi#popup_on_dot = 0
+"let g:jedi#popup_select_first = 0
+"map <Leader>b Oimport ipdb; ipdb.set_trace() # BREAKPOINT<C-c>
+
 "" Better navigating through omnicomplete option list
 "" See http://stackoverflow.com/questions/2170023/how-to-map-keys-for-popup-menu-in-vim
-""" set completeopt=longest,menuone
-""" function! OmniPopup(action)
-"""     if pumvisible()
-"""         if a:action == 'j'
-"""             return "\<C-N>"
-"""         elseif a:action == 'k'
-"""             return "\<C-P>"
-"""         endif
-"""     endif
-"""     return a:action
-""" endfunction
-"
-""" inoremap <silent><C-j> <C-R>=OmniPopup('j')<CR>
-""" inoremap <silent><C-k> <C-R>=OmniPopup('k')<CR>
+""set completeopt=longest,menuone
+""function! OmniPopup(action)
+""    if pumvisible()
+""        if a:action == 'j'
+""            return "\<C-N>"
+""        elseif a:action == 'k'
+""            return "\<C-P>"
+""        endif
+""    endif
+""    return a:action
+""endfunction
+""
+""inoremap <silent><C-j> <C-R>=OmniPopup('j')<CR>
+""inoremap <silent><C-k> <C-R>=OmniPopup('k')<CR>
 "
 "
 "" Python folding
-"" !mkdir -p ~/.vim/ftplugin && wget -O ~/.vim/ftplugin/python_editing.vim http://www.vim.org/scripts/download_script.php?src_id=5492
+"!mkdir -p ~/.vim/ftplugin && wget -O ~/.vim/ftplugin/python_editing.vim http://www.vim.org/scripts/download_script.php?src_id=5492
 " aby se vse furt automaticky nefoldovalo, jinak to funguje na f a F
 set nofoldenable
+
+""folding dalsi verze ale nic moc
+""!mkdir ~/.vim/syntax && wget -O ~/.vim/syntax/python.vim http://www.vim.org/scripts/download_script.php?src_id=9584
+
+
 "
 "!cd ~/.vim/bundle && git clone https://github.com/nvie/vim-flake8.git
 
+"!cd ~/.vim/bundle && git clone https://github.com/majutsushi/tagbar.git
+nmap <F8> :TagbarToggle<CR>
+
+"!cd ~/.vim/bundle && git clone --depth=1 https://github.com/scrooloose/syntastic.git
+"!sudo pip install flake8 pylint
+"set statusline+=%#warningmsg#
+"set statusline+=%{SyntasticStatuslineFlag()}
+"set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 0 
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+"let g:syntastic_python_flake8_args="--max-line-length=160"
+"let g:syntastic_python_pylint_post_args='--max-line-length=160'
+"let g:syntastic_loc_list_height=5
