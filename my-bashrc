@@ -52,7 +52,7 @@ export DEBEMAIL=filip.raab@firma.seznam.cz
 #source ~/.git-completion.bash
 
 export http_proxy=http://proxy.kancelar.seznam.cz:3128
-export https_proxy=http://proxy.kancelar.seznam.cz:3128
+export https_proxy=https://proxy.kancelar.seznam.cz:3128
 
 alias idebug='/www/inzeraty/api/src/debug.py'
 alias gt='git status'
